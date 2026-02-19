@@ -256,8 +256,8 @@ export const authService = {
       // Ensure URL is handled correctly even if it's relative
       const baseUrl = API_CONFIG.BASE_URL;
       const fullUrl = (baseUrl.startsWith('/') && !baseUrl.startsWith('http'))
-        ? `${window.location.origin}${baseUrl}${baseUrl.endsWith('/') ? '' : '/'}`
-        : `${baseUrl}${baseUrl.endsWith('/') ? '' : '/'}`;
+        ? `${window.location.origin}${baseUrl}/sysversion`
+        : `${baseUrl}/sysversion`;
 
       const response = await fetch(fullUrl, {
         method: 'GET',
