@@ -1,0 +1,209 @@
+:root {
+    --primary-color: #17316c;
+    --primary-color-dark: #112552;
+    --secondary-color: #f0f4f8;
+    --text-color: #333;
+    --text-light-color: #f8f9fa;
+    --white: #fff;
+    --border-color: #dde2e7;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --light-gray: #e9ecef;
+    --dark-gray: #4a4a4a;
+
+    /* Tailwind 4 variable mappings */
+    --color-primary: var(--primary-color);
+    --color-primary-dark: var(--primary-color-dark);
+    --color-secondary: var(--secondary-color);
+    --color-surface: var(--white);
+    --color-border: var(--border-color);
+    --color-success: var(--success-color);
+    --color-danger: var(--danger-color);
+}
+
+/* Standard resets handled by Tailwind Preflight */
+body {
+    font-family: 'Outfit', 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--white);
+    color: var(--text-color);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.app-container {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.app-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* ==========================================================================
+   DEVEXPRESS DATAGRID CUSTOMIZATION (PRESERVED FOR CONSISTENCY)
+   ========================================================================== */
+
+/* Items Grid Customization */
+.items-datagrid .dx-datagrid-headers {
+    background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
+    color: var(--white);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.items-datagrid .dx-datagrid-headers .dx-header-row>td {
+    color: var(--white) !important;
+    font-weight: 600;
+    padding: 0.8rem 1rem !important;
+    vertical-align: middle;
+}
+
+.items-datagrid .dx-datagrid-rowsview .dx-row {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.items-datagrid .dx-datagrid-rowsview .dx-row>td {
+    padding: 0.6rem 1rem !important;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.items-datagrid .dx-datagrid-rowsview .dx-row.dx-state-hover {
+    background-color: #f1f5f9 !important;
+    color: var(--primary-color);
+}
+
+.items-datagrid .dx-datagrid-rowsview .dx-selection.dx-row>td {
+    background-color: #e2e8f0 !important;
+    color: var(--primary-color);
+}
+
+/* Customer Search Grid Customization */
+.customer-search-grid .dx-datagrid-headers,
+.product-search-grid .dx-datagrid-headers,
+.invoice-lookup-grid .dx-datagrid-headers {
+    background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
+    color: var(--white);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.customer-search-grid .dx-datagrid-headers .dx-header-row>td,
+.product-search-grid .dx-datagrid-headers .dx-header-row>td,
+.invoice-lookup-grid .dx-datagrid-headers .dx-header-row>td {
+    color: var(--white) !important;
+    font-weight: 600;
+    padding: 0.5rem !important;
+}
+
+.customer-search-grid .dx-datagrid-rowsview .dx-row,
+.product-search-grid .dx-datagrid-rowsview .dx-row,
+.invoice-lookup-grid .dx-datagrid-rowsview .dx-row {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.customer-search-grid .dx-datagrid-rowsview .dx-row>td,
+.product-search-grid .dx-datagrid-rowsview .dx-row>td,
+.invoice-lookup-grid .dx-datagrid-rowsview .dx-row>td {
+    padding: 0.5rem !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.customer-search-grid .dx-datagrid-rowsview .dx-row.dx-state-hover,
+.invoice-lookup-grid .dx-datagrid-rowsview .dx-row.dx-state-hover {
+    background-color: #f8fafc !important;
+}
+
+.customer-search-grid .dx-datagrid-rowsview .dx-selection.dx-row>td,
+.invoice-lookup-grid .dx-datagrid-rowsview .dx-selection.dx-row>td {
+    background-color: #f1f5f9 !important;
+}
+
+/* Modal Layout Fixes */
+.grid-container {
+    overflow: hidden;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.no-scroll-body {
+    overflow: hidden !important;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scrollbar Styling (Premium Look) */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ==========================================================================
+   DEVEXTREME DIALOG THEME OVERRIDES
+   ========================================================================== */
+.dx-dialog .dx-popup-title {
+    background-color: var(--primary-color) !important;
+    color: var(--white) !important;
+    border-bottom: none !important;
+}
+
+.dx-dialog .dx-popup-title .dx-closebutton .dx-icon {
+    color: var(--white) !important;
+}
+
+.dx-dialog .dx-popup-content {
+    font-family: 'Outfit', 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    color: var(--text-color) !important;
+}
+
+/* Ensure buttons match theme */
+.dx-dialog .dx-button-normal {
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.dx-dialog .dx-button-mode-contained.dx-button-default {
+    background-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}

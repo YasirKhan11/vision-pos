@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #17316c;
+    --color-primary-dark: #112552;
+    --color-secondary: #f0f4f8;
+    --color-surface: #ffffff;
+    --color-border: #dde2e7;
+    --color-success: #28a745;
+    --color-danger: #dc3545;
+
+    --font-sans: "Outfit", "Inter", "Roboto", "system-ui", "sans-serif";
+}
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop {
+        border-color: var(--color-border, currentColor);
+    }
+}
