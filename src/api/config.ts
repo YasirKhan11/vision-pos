@@ -7,7 +7,8 @@
 
 export const API_CONFIG = {
   // Base URL of your Vision Gateway API
-  BASE_URL: import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '/api' : 'http://156.38.165.18:8181'),
+  // In production, we force usage of the '/api' proxy to avoid Mixed Content errors on HTTPS hosts like Vercel.
+  BASE_URL: import.meta.env.PROD ? '/api' : (import.meta.env.VITE_API_BASE_URL || 'http://156.38.165.18:8181'),
 
   // JWT Token settings
   TOKEN_KEY: 'vision_jwt_token',

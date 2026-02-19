@@ -94,7 +94,30 @@ class HttpClient {
    * Build URL with query parameters
    */
   private buildUrl(endpoint: string, params?: Record<string, any>): string {
-    const url = new URL(endpoint, this.baseUrl);
+    let fullPath = '';
+
+    // If baseUrl is a relative path (starts with /) and not a full URL
+    if (this.baseUrl.startsWith('/') && !this.baseUrl.startsWith('http')) {
+      // Ensure no double slashes and correct joining
+      const base = this.baseUrl.endsWith('/') ? this.baseUrl.slice(0, -1) : this.baseUrl;
+      const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+      fullPath = base + path;
+    } else {
+      // Standard absolute URL joining
+      try {
+        const urlObj = new URL(endpoint, this.baseUrl);
+        fullPath = urlObj.toString();
+      } catch (e) {
+        // Fallback for malformed URLs
+        const base = this.baseUrl.endsWith('/') ? this.baseUrl.slice(0, -1) : this.baseUrl;
+        const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+        fullPath = base + path;
+      }
+    }
+
+    // Now use URL constructor on the full string (relative to origin if needed)
+    // to easily manage query parameters
+    const url = new URL(fullPath, window.location.origin);
 
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
@@ -102,6 +125,11 @@ class HttpClient {
           url.searchParams.set(key, String(value));
         }
       });
+    }
+
+    // If we started with a relative path, return only the pathname + search
+    if (this.baseUrl.startsWith('/') && !this.baseUrl.startsWith('http')) {
+      return url.pathname + url.search;
     }
 
     return url.toString();

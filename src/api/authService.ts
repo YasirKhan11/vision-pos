@@ -253,7 +253,13 @@ export const authService = {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout for health check
 
-      const response = await fetch(`${API_CONFIG.BASE_URL}/`, {
+      // Ensure URL is handled correctly even if it's relative
+      const baseUrl = API_CONFIG.BASE_URL;
+      const fullUrl = (baseUrl.startsWith('/') && !baseUrl.startsWith('http'))
+        ? `${window.location.origin}${baseUrl}${baseUrl.endsWith('/') ? '' : '/'}`
+        : `${baseUrl}${baseUrl.endsWith('/') ? '' : '/'}`;
+
+      const response = await fetch(fullUrl, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
